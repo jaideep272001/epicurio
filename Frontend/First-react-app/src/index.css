@@ -1,0 +1,287 @@
+/* body{
+    margin: 0;
+    padding: 0;
+    background-color: #F2F4F6;
+}
+.headerdiv{
+    display: flex;
+    justify-content: center;
+    background-color: #FAF9F6;
+   
+}
+
+.headerdiv img {
+    margin-top: 20px;
+    height: 60px;
+    width: 60px;
+    margin-right: 10px;
+}
+
+.headerdiv p{
+    display: flex;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 55px;
+    font-weight: 500;
+    margin-left: 10px;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+
+.mainbody{
+    background-color: #F2F4F6 ;
+    justify-content: center;
+    display: flex;
+    padding-top:20px;
+    padding-bottom: 10px;
+    
+}
+.main{
+    background-color: #F2F4F6 ;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+
+.forminput{
+    margin-right: 20px;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    place-content: "Enter Something";
+}
+
+
+.btnsubmit{
+    background-color: black;
+    color: #FAF9F6;
+    padding: 10px;
+    border-radius: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #FAF9F6; 
+    color: #2C2C2C;          
+    font-size: 14px;
+    border-top: 1px solid #ddd; 
+}
+.ingredientsdiv{
+    margin-left: 330px;
+    padding-bottom: 30px;
+}
+.recipectadiv{
+    display: flex;
+    background-color: #FAF9F6;
+    margin-left: 330px;
+    margin-right: 300px;
+    border-radius: 10px;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+.insiderecipediv{
+    margin-left: 20px;
+}
+
+.recipepara{
+    margin-bottom: 30px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.recipehead h2{
+    font-family: 'Times New Roman', Times, serif;
+}
+.recipebtn{
+    display: flex;
+    
+}
+.recipebtn button{
+    margin: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    border :#2C2C2C;
+    background-color:#e7947f;
+}
+.recipeplace{
+    margin-left: 330px;
+    margin-right: 330px;
+} */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F2F4F6;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.headerdiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAF9F6;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.headerdiv img {
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}
+
+.headerdiv p {
+    font-size: clamp(24px, 5vw, 55px);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* MAIN BODY */
+.mainbody {
+    background-color: #F2F4F6;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.main {
+    background-color: #F2F4F6;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+
+.forminput {
+    margin: 0 10px 10px 0;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+.btnsubmit {
+    background-color: black;
+    color: #FAF9F6;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    width: auto;
+}
+
+/* FOOTER */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #FAF9F6; 
+    color: #2C2C2C;          
+    font-size: 14px;
+    border-top: 1px solid #ddd; 
+}
+
+.ingredientsdiv {
+    padding: 0 5%;
+    margin-bottom: 30px;
+}
+
+.recipectadiv {
+    display: flex;
+    background-color: #FAF9F6;
+    padding: 20px;
+    border-radius: 10px;
+    justify-content: space-between;
+    margin: 50px auto 30px;
+    width: 90%;
+    max-width: 1000px;
+    flex-wrap: wrap;
+}
+
+.insiderecipediv {
+    margin-left: 20px;
+}
+
+.recipepara {
+    margin-bottom: 30px;
+}
+
+.recipehead h2 {
+    margin: 0;
+}
+
+.recipebtn {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.recipebtn button {
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #e7947f;
+}
+
+.recipeplace {
+    margin: auto;
+    padding: 0 5%;
+    max-width: 1000px;
+}
+.recipedata{
+    margin: 10vb;
+}
+
+@media (max-width: 768px) {
+    .recipectadiv {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .recipebtn {
+        justify-content: flex-start;
+    }
+
+    .headerdiv img {
+        height: 40px;
+        width: 40px;
+    }
+}
+.recipedata{
+    margin: 5vb;
+}
+
+
+@media (max-width: 480px) {
+    .headerdiv {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .headerdiv p {
+        font-size: 28px;
+        margin-top: 5px;
+    }
+
+    .btnsubmit {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .forminput {
+        width: 100%;
+    }
+}
