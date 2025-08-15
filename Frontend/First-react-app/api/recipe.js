@@ -19,6 +19,7 @@ export default async function handler(req, res) {
 
   try {
     const { ingredients } = req.body;
+    console.log(ingredients);
     
     if (!ingredients || !Array.isArray(ingredients)) {
       return res.status(400).json({ error: 'ingredients array is required' });
