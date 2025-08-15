@@ -1,25 +1,26 @@
+// pages/api/recipe.js
+
 const SYSTEM_PROMPT = `
-You are an assistant that receives a list of ingredients that a user has and suggests a recipe they could make with some or all of those ingredients. You don't need to use every ingredient they mention in your recipe. The recipe can include additional ingredients they didn't mention, but try not to include too many extra ingredients. Format your response in markdown to make it easier to render to a web page
+You are an assistant that receives a list of ingredients and suggests a recipe...
+Format your response in markdown.
 `;
 
 export default async function handler(req, res) {
+  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
+  if (req.method === 'OPTIONS') return res.status(200).end();
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Only POST requests allowed' });
+    return res.status(405).json({ success: false, error: 'Only POST allowed' });
   }
 
   try {
     const { ingredients } = req.body;
 
-    if (!ingredients || !Array.isArray(ingredients)) {
+    if (!Array.isArray(ingredients) || ingredients.length === 0) {
       return res.status(400).json({ success: false, error: 'ingredients array is required' });
     }
 
@@ -34,9 +35,9 @@ export default async function handler(req, res) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          inputs: `${SYSTEM_PROMPT}\n\nUser: I have ${ingredientsString}. Please give me a recipe you'd recommend I make!\n\nAssistant:`,
+          inputs: `${SYSTEM_PROMPT}\n\nUser: I have ${ingredientsString}. Please give me a recipe you'd recommend!\n\nAssistant:`,
           parameters: {
-            max_new_tokens: 1024,
+            max_new_tokens: 512,
             temperature: 0.7,
             return_full_text: false
           }
@@ -46,29 +47,20 @@ export default async function handler(req, res) {
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error("HuggingFace API Error:", errText);
-      throw new Error(`HTTP error! status: ${response.status} - ${errText}`);
+      throw new Error(`HuggingFace API error: ${errText}`);
     }
 
     const data = await response.json();
 
-    let recipe = 'No recipe generated';
-    if (Array.isArray(data) && data[0]?.generated_text) {
-      recipe = data[0].generated_text;
-    } else if (data?.generated_text) {
-      recipe = data.generated_text;
-    } else if (data?.error) {
-      throw new Error(`Model error: ${data.error}`);
-    }
+    let recipe = data[0]?.generated_text || data.generated_text || 'No recipe generated';
 
     res.status(200).json({ success: true, recipe });
 
   } catch (error) {
-    console.error('Error in /api/recipe:', error.message);
+    console.error('Error in /api/recipe:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to generate recipe',
-      message: error.message
+      error: error.message || 'Failed to generate recipe'
     });
   }
 }
