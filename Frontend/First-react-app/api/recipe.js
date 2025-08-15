@@ -20,6 +20,7 @@ export default async function handler(req, res) {
   try {
     const { ingredients } = req.body;
     console.log(ingredients);
+    console.log(process.env.HF_ACCESS_TOKEN);
     
     if (!ingredients || !Array.isArray(ingredients)) {
       return res.status(400).json({ error: 'ingredients array is required' });
